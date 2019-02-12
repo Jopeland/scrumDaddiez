@@ -28,5 +28,27 @@ namespace fileStorage
         {
             return "Hello World";
         }
+
+        public int NumberOfAccounts()
+        {
+            // grabbing connection string from config file
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // instantiating query
+            string sqlSelect = "SELECT * from users";
+
+            // set up our connectino object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            // set up command object to use our connection, and our query
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+
+            sqlDa.Fill(sqlDt);
+            return sqlDt.Rows.Count;
+
+
+        }
     }
 }

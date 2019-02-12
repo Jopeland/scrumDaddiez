@@ -9,7 +9,7 @@ function login(){
 
 
 function ValidateLogin(username, password){
-    var webMethod = "../fileStorage/fileStorageServices.asmx.cs/VerifyCredentials";
+    var webMethod = "../fileStorage/fileStorageServices.asmx/VerifyCredentials";
     var parameters = "{\"username\":\"" + encodeURI(username) + "\",\"password\":\"" + encodeURI(password) + "\"}";
     
     $.ajax({

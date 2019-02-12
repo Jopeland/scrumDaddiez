@@ -12,7 +12,7 @@ function ValidateLogin(username, password){
     $.ajax({
         type: "GET",
         data: {username: username, password: password},
-        url: "../fileStorage/fileStorageServices.asmx.cs/ValidateCredentials",
+        url: "../fileStorage/fileStorageServices.asmx.cs/VerifyCredentials",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function login(data){

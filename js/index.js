@@ -9,10 +9,13 @@ function login(){
 
 
 function ValidateLogin(username, password){
+    var webMethod = "../fileStorage/fileStorageServices.asmx.cs/VerifyCredentials";
+    var parameters = "{\"username\":\"" + encodeURI(username) + "\",\"password\":\"" + encodeURI(password) + "\"}";
+    
     $.ajax({
         type: "GET",
-        data: {username: username, password: password},
-        url: "../fileStorage/fileStorageServices.asmx.cs/VerifyCredentials",
+        data: parameters,
+        url: webMethod,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function login(data){
@@ -30,8 +33,8 @@ function ValidateLogin(username, password){
                 alert("Invalid credentials. Please try again.");
             }
         },
-        error: function(xhr){
-            alert(xhr.responseText);
+        error: function(e){
+            alert(e.responseText);
         }
     })
 }

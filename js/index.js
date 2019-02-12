@@ -13,7 +13,7 @@ function ValidateLogin(username, password){
     var parameters = "{\"username\":\"" + encodeURI(username) + "\",\"password\":\"" + encodeURI(password) + "\"}";
     
     $.ajax({
-        type: "GET",
+        type: "POST",
         data: parameters,
         url: webMethod,
         contentType: "application/json;charset=utf-8",

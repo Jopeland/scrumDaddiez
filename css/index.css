@@ -1,8 +1,28 @@
-body {
-    text-align: center;
-    background-color: lightgoldenrodyellow;
-    margin: 0%;
+body, html{
+  height: 100%;
 }
+.bg{
+  background-image: url("../img/studying.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body{
+  background-size: auto;
+  margin: 0%;
+}
+h2 {
+	text-align: center;
+}
+form{
+	text-align: center;
+  background-color: cornflowerblue;
+  width: 300px;
+  padding: 25px;
+  margin: 25px;
+}
+
 
 header {
     background-color: white;

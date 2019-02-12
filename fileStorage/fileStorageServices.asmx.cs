@@ -29,6 +29,7 @@ namespace fileStorage
             return "Hello World";
         }
 
+        [WebMethod]
         public int NumberOfAccounts()
         {
             // grabbing connection string from config file

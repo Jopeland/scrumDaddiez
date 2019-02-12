@@ -11,8 +11,8 @@ function login(){
 function ValidateLogin(username, password){
     $.ajax({
         type: "GET",
-        data: JSON.stringify(),
-        url: "../fileStorage/fileStorageServices.asmmx.cs/ValidateCredentials",
+        data: {username: username, password: password},
+        url: "../fileStorage/fileStorageServices.asmx.cs/ValidateCredentials",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function login(data){

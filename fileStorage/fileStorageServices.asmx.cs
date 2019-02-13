@@ -51,7 +51,7 @@ namespace fileStorage
         }
 
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public bool VerifyCredentials(string username, string password)
         {
             string dbPass = "";

@@ -13,18 +13,18 @@
     <header>
         <a href="#" target="_self"><img class="logo" src="https://static.makeuseof.com/wp-content/uploads/2011/01/Format07.png" alt="File logo" style="height: 50px;"></a>
     </header>
-    <div class="all">
-        <div class="form">
+    <div class="bg">
+        <div class="form" align="center">
             <form action="login">
-                <p>Username or Email Address</p>
+                <h2>Log In Here</h2>
+                <p class="form-p">Username or Email Address</p>
                 <input type="text" id="username">
-                <p>Password</p>
-                <input type="text" id="password"><br><br>
+                <p class="form-p">Password</p>
+                <input type="text" id="password">
+                <br><br>
+                <button type="click" onclick="return login()">Submit</button>
+                <p>Don't have an account? <a href="./html/createAccount.html" target="_self">Register here</a></p>
             </form>
-
-            <button type="click" onclick="return login()">Submit</button>
-
-            <p>Don't have an account? <a href="./html/createAccount.html" target="_self">Register here</a></p>
         </div>
     </div>
 </body>

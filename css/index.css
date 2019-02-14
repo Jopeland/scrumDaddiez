@@ -23,8 +23,18 @@ form{
   margin: 25px;
 }
 
+.form{
+  padding-top: 40px;
+}
 
 header {
     background-color: white;
     text-align: left;
+    clear: right;
+}
+
+.form-p{
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 11pt;
 }

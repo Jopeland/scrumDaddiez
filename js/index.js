@@ -25,11 +25,11 @@ function login(){
 
 
 function ValidateLogin(username, password){
-    var webMethod = "../fileStorage/fileStorageServices.asmx/VerifyCredentials";
+    var webMethod = "../fileStorage/fileStorageServices.asmx.cs/VerifyCredentials";
     var parameters = "{\"username\":\"" + encodeURI(username) + "\",\"password\":\"" + encodeURI(password) + "\"}";
     
     $.ajax({
-        type: "POST",
+        type: "GET",
         data: parameters,
         url: webMethod,
         contentType: "application/json;charset=utf-8",

@@ -208,6 +208,12 @@ namespace fileStorage
         public string ViewClasses()
         {
 
+            // variable to store HTML string to be appended using JS
+            string html = "";
+            string id = "";
+            string name = "";
+            string professor = "";
+
             // grabbing connection string from config file
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
@@ -220,24 +226,55 @@ namespace fileStorage
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
             sqlConnection.Open();
 
-            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
-            DataTable sqlDt = new DataTable();
+            MySqlDataReader reader = sqlCommand.ExecuteReader();
 
-            sqlDa.Fill(sqlDt);
-
-            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
-            Dictionary<string, object> row;
-            foreach (DataRow dr in sqlDt.Rows)
+            try
             {
-                row = new Dictionary<string, object>();
-                foreach (DataColumn col in sqlDt.Columns)
+                if (reader.HasRows)
                 {
-                    row.Add(col.ColumnName, dr[col]);
+                    while (reader.Read())
+                    {
+                        id = (string)reader["ClassID"];
+                        name = (string)reader["ClassName"];
+                        professor = (string)reader["ProfessorName"];
+
+                        html += "<tr><td>" + id + "</td><td>" + name + "</td><td>" + professor + "</td></tr>";
+                    }
+
+                    return html;
                 }
-                rows.Add(row);
+
+                else
+                {
+                    html = null;
+                    return html;
+                }
             }
-            return serializer.Serialize(rows);
+
+            finally
+            {
+                reader.Close();
+                sqlConnection.Close();
+            }
+
+            //MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            //DataTable sqlDt = new DataTable();
+
+            //sqlDa.Fill(sqlDt);
+
+            //System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            //List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            //Dictionary<string, object> row;
+            //foreach (DataRow dr in sqlDt.Rows)
+            //{
+            //    row = new Dictionary<string, object>();
+            //    foreach (DataColumn col in sqlDt.Columns)
+            //    {
+            //        row.Add(col.ColumnName, dr[col]);
+            //    }
+            //    rows.Add(row);
+            //}
+            //return serializer.Serialize(rows);
         }
     }
 }

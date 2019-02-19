@@ -21,8 +21,9 @@ function ValidateLogin(){
         success: function(data){
         	var returnData = data.d;
 
-        	if (returnData === true){
-        		document.location.href = "html/account.html";
+        	if (returnData !== "false"){
+                document.location.href = "html/account.html";
+                sessionStorage.setItem('admin', returnData);
     		}
 
     		else {

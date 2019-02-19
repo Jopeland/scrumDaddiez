@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Create Class</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/addClass.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css">
     <script src="../js/addClass.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 <body>
     <header>
@@ -18,11 +19,8 @@
                 <h2>Add A Class</h2>
                 <p>Class ID:<input required type="text" name="classID" id="classID"></p>
                 <p>Class Name:<input required type="text" name="className" id="className"></p>
-                <br>
-                <p>Professor Name</p>
-                <p>First: <input required type="text" name="profFName" id="profFName">   
-                    Last: <input required type="text" name="profLName" id="profLName"></p>
-                <input type="submit" value="Add Class">
+                <p>Professor Last Name: <input required type="text" name="profLName" id="profLName" /></p>
+                <input type="button" id="addClassButton" value="Submit">
             </form>
         </div>
     </div>

@@ -52,7 +52,7 @@ namespace fileStorage
 
         [WebMethod]
         // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public bool VerifyCredentials(string username, string password)
+        public string VerifyCredentials(string username, string password)
         {
             string dbPass = "";
 
@@ -82,11 +82,12 @@ namespace fileStorage
                 // checking to see if password in DB matches password provided
                 if (dbPass == password)
                 {
-                    return true;
+                    return reader.GetValue(3).ToString();
                 }
                 else
                 {
-                    return false;
+                    string var = "false";
+                    return var;
                 }
             }
             finally
@@ -146,6 +147,46 @@ namespace fileStorage
             {
                 reader.Close();
                 sqlConnection.Close();
+            }
+        }
+
+
+        [WebMethod]
+        // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool AddClass(string classID, string className, string professorName)
+        {
+
+            // grabbing connection string from config file
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // instantiating query
+            string sqlSelect = $"Select * FROM classes WHERE ClassID='{classID}' AND ProfessorName='{professorName}'";
+
+            // set up our connectino object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            // set up command object to use our connection, and our query
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+
+            // checking to see if the class exists in the DB
+            MySqlDataReader reader = sqlCommand.ExecuteReader();
+            string classExist = "null";
+
+            try
+            {
+                if (!reader.Read())
+                {
+                    MySqlCommand insertClass = new MySqlCommand($"INSERT INTO CLASSES ('{classID}','{className}','{professorName}'; )", sqlConnection);
+                    return true;
+                }
+                else
+                    return false;
+            }
+            finally
+            {
+                // terminating DB connections
+                sqlConnection.Close();
+                reader.Close();
             }
         }
     }

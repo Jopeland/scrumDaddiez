@@ -97,6 +97,8 @@
     <Content Include="html\createAccount.html" />
     <Content Include="img\studying.jpg" />
     <Content Include="index.html" />
+    <Content Include="js\account.js" />
+    <Content Include="js\addClass.js" />
     <Content Include="js\classSearch.js" />
     <Content Include="js\index.js" />
     <Content Include="Web.config">

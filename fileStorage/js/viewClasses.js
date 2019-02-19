@@ -5,11 +5,8 @@
     var webMethod = "fileStorageServices.asmx/ViewClasses";
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: webMethod,
-        data:,
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
         success: function (data) {
             myObj = JSON.parse(this.responseText);
             txt += "<table border='1'>"

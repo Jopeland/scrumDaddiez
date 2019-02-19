@@ -170,7 +170,6 @@ namespace fileStorage
 
             // checking to see if the class exists in the DB
             MySqlDataReader reader = sqlCommand.ExecuteReader();
-            string classExist = "null";
 
             try
             {
@@ -201,6 +200,44 @@ namespace fileStorage
                 sqlConnection.Close();
                 reader.Close();
             }
+        }
+
+
+        [WebMethod]
+        // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string ViewClasses()
+        {
+
+            // grabbing connection string from config file
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // instantiating query
+            string sqlSelect = $"Select * FROM classes WHERE Approved=1";
+
+            // set up our connectino object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            // set up command object to use our connection, and our query
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+
+            sqlDa.Fill(sqlDt);
+
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            List<Dictionary<string, object>> rows = new List<Dictionary<string, object>>();
+            Dictionary<string, object> row;
+            foreach (DataRow dr in sqlDt.Rows)
+            {
+                row = new Dictionary<string, object>();
+                foreach (DataColumn col in sqlDt.Columns)
+                {
+                    row.Add(col.ColumnName, dr[col]);
+                }
+                rows.Add(row);
+            }
+            return serializer.Serialize(rows);
         }
     }
 }

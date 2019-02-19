@@ -20,9 +20,15 @@ function addClass() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (data) {
-            if(data === true)
-                alert("Following class added:\nID: " + { classID } + "\nName: " + { className } + "\nProfessor: " + { professorName });
-            if (data === false)
+            console.log("Connection established.\n Data: ")
+            console.log(data);
+
+            if (data.d == true) {
+                alert("Following class added:\nID: " + classID + "\nName: " + className + "\nProfessor: " + professorName);
+                console.log("Following class added:\nID: " + classID + "\nName: " + className + "\nProfessor: " + professorName);
+            }
+           
+            else
                 alert("Class already exists. Will not add to database.");
         },
         error: function (e) {

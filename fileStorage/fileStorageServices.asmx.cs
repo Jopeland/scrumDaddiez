@@ -176,7 +176,19 @@ namespace fileStorage
             {
                 if (!reader.Read())
                 {
-                    MySqlCommand insertClass = new MySqlCommand($"INSERT INTO CLASSES ('{classID}','{className}','{professorName}'; )", sqlConnection);
+                    // closing previous command
+                    reader.Close();
+
+                    // instantiating new command
+                    MySqlCommand insertClass = new MySqlCommand("INSERT INTO CLASSES(ClassID,ClassName,ProfessorName) VALUES(@classID,@className,@professorName)", sqlConnection);
+
+                    // assigning values
+                    insertClass.Parameters.AddWithValue("@classID", classID);
+                    insertClass.Parameters.AddWithValue("@className", className);
+                    insertClass.Parameters.AddWithValue("@professorName", professorName);
+
+                    // running command
+                    insertClass.ExecuteNonQuery();
                     return true;
                 }
                 else

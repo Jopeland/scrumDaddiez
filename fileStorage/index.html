@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,7 +6,7 @@
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/index.css">
-    <script src="./js/index.js"></script>
+    <script src="js/index.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 <body>
@@ -15,16 +15,14 @@
     </header>
     <div class="bg">
         <div class="form" align="center">
-            <form action="login">
-                <h2>Log In Here</h2>
-                <p class="form-p">Username or Email Address</p>
-                <input type="text" id="username">
-                <p class="form-p">Password</p>
-                <input type="text" id="password">
-                <br><br>
-                <button type="click" onclick="return login()">Submit</button>
-                <p>Don't have an account? <a href="./html/createAccount.html" target="_self">Register here</a></p>
-            </form>
+            <h2>Log In Here</h2>
+            <p class="form-p">Username or Email Address</p>
+            <input type="text" id="username">
+            <p class="form-p">Password</p>
+            <input type="text" id="password">
+            <br><br>
+            <input type="button" id="loginButton" value="Submit">
+            <p>Don't have an account? <a href="./html/createAccount.html" target="_self">Register here</a></p>
         </div>
     </div>
 </body>

@@ -81,13 +81,69 @@ namespace fileStorage
 
                 // checking to see if password in DB matches password provided
                 if (dbPass == password)
+                {
                     return true;
+                }
                 else
+                {
                     return false;
+                }
             }
             finally
             {
                 // terminating reader and DB connections
+                reader.Close();
+                sqlConnection.Close();
+            }
+        }
+
+        [WebMethod]
+        // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string classSearch(string input)
+        {
+            // variable to store HTML string to be appended using JS
+            string html = "";
+            string id = "";
+            string name = "";
+            string professor = "";
+
+            // mostly the same code as VerifyCredentials
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // instantiating query
+            string sqlSelect = $"Select * FROM classes WHERE ClassID LIKE'%{input}%' OR ProfessorName='{input}' OR ClassName LIKE '%{input}%'";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+
+            MySqlDataReader reader = sqlCommand.ExecuteReader();
+
+            try
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        id = (string)reader["ClassID"];
+                        name = (string)reader["ClassName"];
+                        professor = (string)reader["ProfessorName"];
+
+                        html += "<tr><td>" + id + "</td><td>" + name + "</td><td>" + professor + "</td></tr>";
+                    }
+
+                    return html;
+                }
+
+                else
+                {
+                    html = null;
+                    return html;
+                }
+            }
+
+            finally
+            {
                 reader.Close();
                 sqlConnection.Close();
             }

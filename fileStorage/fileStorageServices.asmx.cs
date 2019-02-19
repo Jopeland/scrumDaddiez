@@ -180,12 +180,13 @@ namespace fileStorage
                     reader.Close();
 
                     // instantiating new command
-                    MySqlCommand insertClass = new MySqlCommand("INSERT INTO CLASSES(ClassID,ClassName,ProfessorName) VALUES(@classID,@className,@professorName)", sqlConnection);
+                    MySqlCommand insertClass = new MySqlCommand("INSERT INTO CLASSES(ClassID,ClassName,ProfessorName,Approved) VALUES(@classID,@className,@professorName,@approved)", sqlConnection);
 
                     // assigning values
                     insertClass.Parameters.AddWithValue("@classID", classID);
                     insertClass.Parameters.AddWithValue("@className", className);
                     insertClass.Parameters.AddWithValue("@professorName", professorName);
+                    insertClass.Parameters.AddWithValue("@approved", true);
 
                     // running command
                     insertClass.ExecuteNonQuery();

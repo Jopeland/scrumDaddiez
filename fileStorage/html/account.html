@@ -6,8 +6,9 @@
     <title>Account Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css">
-    <script src="../js/account.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="../js/account.js"></script>
+    <script src="../js/classSearch.js"></script>
 </head>
 <body onload="load()">
     <header>
@@ -21,6 +22,26 @@
         </div>
         <div class="user" id="userLinks">
             <h2>User Functions</h2>
+            <div class="form">
+                <h2>Search</h2>
+                <input type="text" placeholder="Enter class ID (ie CIS or CIS440), class name, or professor name" id="input">
+                <input type="button" id="searchButton" value="Search">
+            </div>
+            <h2>Registered classes</h2>
+            <table id="searchResults">
+                <thead>
+                    <tr>
+                        <th>Class ID</th>
+                        <th>Class Name</th>
+                        <th>Professor</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            <div id="error"></div>
+            <br>
+            <br>
+            <a href="addClass.html">Can't find you're class? Request to add it here!</a>
             <a href="./addClassStudent.html">View class notes</a>
         </div>
         <div>

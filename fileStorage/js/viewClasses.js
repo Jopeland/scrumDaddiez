@@ -17,7 +17,7 @@
             }
             else {
                 var errorMessage = "<p>No results found.  Click <a href='addClass.html'>here</a> to request a new class.</p>";
-                $("#error").append(errorMessage);
+                $("#tableData").append(errorMessage);
             }
         },
         error: function (e) {

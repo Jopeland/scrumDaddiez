@@ -112,7 +112,7 @@ namespace fileStorage
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
             // instantiating query
-            string sqlSelect = $"Select * FROM classes WHERE ClassID LIKE'%{input}%' OR ProfessorName='{input}' OR ClassName LIKE '%{input}%'";
+            string sqlSelect = $"Select * FROM classes WHERE (ClassID LIKE'%{input}%' OR ProfessorName='{input}' OR ClassName LIKE '%{input}%') AND Approved = 1";
 
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
@@ -275,6 +275,106 @@ namespace fileStorage
             //    rows.Add(row);
             //}
             //return serializer.Serialize(rows);
+        }
+
+        [WebMethod]
+        public string viewRequests()
+        {
+            // variable to store HTML string to be appended using JS
+            string html = "";
+            string id = "";
+            string name = "";
+            string professor = "";
+
+            // grabbing connection string from config file
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // instantiating query
+            string sqlSelect = $"Select * FROM classes WHERE Approved=0";
+
+            // set up our connectino object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+            // set up command object to use our connection, and our query
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+
+            MySqlDataReader reader = sqlCommand.ExecuteReader();
+
+            try
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        id = (string)reader["ClassID"];
+                        name = (string)reader["ClassName"];
+                        professor = (string)reader["ProfessorName"];
+
+                        html += "<tr><td>" + id + "</td><td>" + name + "</td><td>" + professor + "</td><td><input type='button' value='Approve' class='approve'></td><td><input type='button' value='Deny' class='deny'></td></tr>";
+                    }
+
+                    return html;
+                }
+
+                else
+                {
+                    html = null;
+                    return html;
+                }
+            }
+
+            finally
+            {
+                reader.Close();
+                sqlConnection.Close();
+            }
+        }
+
+        [WebMethod]
+        public bool managePendingRequests(string classID, string professorName, bool approved)
+        {
+            // grabbing connection string from config file
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            // set up our connectino object to be ready to use our connection string
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+
+            // if true is provided as the approval value, MySQL updates the row and by setting the unapproved class' value to 1
+            if (approved == true)
+            {               
+                // instantiating UPDATE query
+                string sqlUpdate = $"UPDATE classes SET Approved = 1 WHERE ClassID='{classID}' AND ProfessorName='{professorName}'";
+
+                // set up command object to use our connection, and our query
+                MySqlCommand sqlCommand = new MySqlCommand(sqlUpdate, sqlConnection);
+                sqlConnection.Open();
+
+                // command is executed
+                sqlCommand.ExecuteNonQuery();
+
+                sqlConnection.Close();
+
+                //true is returned to tell the user that a row was updated
+                return true;
+            }
+            // if it is not approved a SQL query deletes the row from the database
+            else
+            {
+                // instantiating DELETE query
+                string sqlDelete = $"DELETE FROM classes WHERE ClassID='{classID}' AND ProfessorName='{professorName}'";
+
+                // set up command object to use our connection, and our query
+                MySqlCommand sqlCommand = new MySqlCommand(sqlDelete, sqlConnection);
+                sqlConnection.Open();
+
+                // Delete command is executed
+                sqlCommand.ExecuteNonQuery();
+
+                sqlConnection.Close();
+
+                // false is returned to indicate to the website that it was a deletion
+                return false;
+            }
         }
     }
 }

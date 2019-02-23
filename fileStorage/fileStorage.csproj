@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="fileStorage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\fileStorage.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -89,10 +93,12 @@
   <ItemGroup>
     <Content Include="css\account.css" />
     <Content Include="css\index.css" />
+    <Content Include="css\upload.css" />
     <Content Include="fileStorageServices.asmx" />
     <Content Include="Global.asax" />
     <Content Include="html\account.html" />
     <Content Include="html\adminAddClass.html" />
+    <Content Include="html\classRepo.html" />
     <Content Include="html\viewRequests.html" />
     <Content Include="html\createAccount.html" />
     <Content Include="html\viewClasses.html" />
@@ -103,6 +109,7 @@
     <Content Include="js\classSearch.js" />
     <Content Include="js\index.js" />
     <Content Include="js\retrieveRequests.js" />
+    <Content Include="js\upload.js" />
     <Content Include="js\viewClasses.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -110,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="fileStorageServices.asmx.cs">
       <DependentUpon>fileStorageServices.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -130,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,31 @@
+﻿.file-upload-container {
+    height: 100%;
+    width: 100%;
+}
+
+#fileUpload {
+    display: none;
+    overflow: hidden;
+    height: 0;
+    width: 0;
+}
+
+.upload-mask-button:hover {
+    background: #3498db;
+    opacity: 0.8;
+}
+
+.upload-mask-button {
+    margin: 100px auto;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+    display: block;
+    color: white;
+    border-radius: 2px;
+    height: 30px;
+    width: 100px;
+    background: #3498db;
+}

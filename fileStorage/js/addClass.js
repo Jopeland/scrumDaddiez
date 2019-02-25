@@ -7,11 +7,12 @@ function addClass() {
     var classID = document.getElementById("classID").value;
     var className = document.getElementById("className").value;
     var professorName = document.getElementById("profLName").value;
+    var admin = sessionStorage.getItem('admin');
 
     console.log("Input received. Attempting to validate credentials.");
 
     var webMethod = "../fileStorageServices.asmx/AddClass";
-    var parameters = "{\"classID\":\"" + encodeURI(classID) + "\",\"className\":\"" + encodeURI(className) + "\",\"professorName\":\"" + encodeURI(professorName) + "\"}";
+    var parameters = "{\"classID\":\"" + encodeURI(classID) + "\",\"className\":\"" + encodeURI(className) + "\",\"professorName\":\"" + encodeURI(professorName) + "\",\"admin\":\"" + admin + "\"}";
 
     $.ajax({
         type: "POST",
@@ -26,6 +27,7 @@ function addClass() {
             if (data.d == true) {
                 alert("Following class added:\nID: " + classID + "\nName: " + className + "\nProfessor: " + professorName);
                 console.log("Following class added:\nID: " + classID + "\nName: " + className + "\nProfessor: " + professorName);
+                document.location.href = "account.html";
             }
            
             else

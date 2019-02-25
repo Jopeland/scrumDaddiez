@@ -97,7 +97,7 @@
     <Content Include="fileStorageServices.asmx" />
     <Content Include="Global.asax" />
     <Content Include="html\account.html" />
-    <Content Include="html\adminAddClass.html" />
+    <Content Include="html\addClass.html" />
     <Content Include="html\classRepo.html" />
     <Content Include="html\viewRequests.html" />
     <Content Include="html\createAccount.html" />
@@ -105,7 +105,7 @@
     <Content Include="img\studying.jpg" />
     <Content Include="index.html" />
     <Content Include="js\account.js" />
-    <Content Include="js\adminAddClass.js" />
+    <Content Include="js\addClass.js" />
     <Content Include="js\classSearch.js" />
     <Content Include="js\index.js" />
     <Content Include="js\retrieveRequests.js" />

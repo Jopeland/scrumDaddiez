@@ -238,7 +238,7 @@ namespace fileStorage
                         name = (string)reader["ClassName"];
                         professor = (string)reader["ProfessorName"];
 
-                        html += "<tr><td>" + id + "</td><td>" + name + "</td><td>" + professor + "</td></tr>";
+                        html += "<a href='./classRepo.html?classname=" + id + "_" + professor + "'><tr><td>" + id + "</td><td>" + name + "</td><td>" + professor + "</td></tr></a><br>";
                     }
 
                     return html;

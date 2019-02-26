@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Account Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/account.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="../js/account.js"></script>
     <script src="../js/classSearch.js"></script>
@@ -15,39 +15,27 @@
         <a href="#" target="_self"><img class="logo" src="https://static.makeuseof.com/wp-content/uploads/2011/01/Format07.png" alt="File logo" style="height: 50px;"></a>
     </header>
     <div class="all">
-        <h1>You have logged in, thank you for being our friend :)</h1>
+        <h1>Note Repository System</h1>
         <div class="admin" id="adminLinks">
-            <h2>Admin Functions</h2>
+            <h2>Admin Interface Logged in</h2>
             <a href="./addClass.html">Add a class</a>
             <a href="./viewRequests.html">View pending requests</a>
         </div>
         <div class="user" id="userLinks">
-            <h2>User Functions</h2>
-            <div class="form">
-                <h2>Search</h2>
-                <input type="text" placeholder="Enter class ID (ie CIS or CIS440), class name, or professor name" id="input">
-                <input type="button" id="searchButton" value="Search">
-            </div>
-            <h2>Registered classes</h2>
-            <table id="searchResults">
-                <thead>
-                    <tr>
-                        <th>Class ID</th>
-                        <th>Class Name</th>
-                        <th>Professor</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-            <div id="error"></div>
-            <br>
-            <br>
-            <a href="addClass.html">Can't find you're class? Request to add it here!</a>
-            <a href="#">View class notes</a>
-        </div>
-        <div>
-            <a href="./viewClasses.html">View All Active Classes</a>
-        </div>
+            <h2>User Interface Logged in</h2>
+			<div class="view">
+				<a href="./viewClasses.html">View All Active Classes</a>
+			</div>
+			<div class="search">
+				<a href="./searchClasses.html">Search Classes</a>
+			</div>
+			<div class="add">
+				<a href="./addClass.html">Request to Add Classes</a>
+			</div>
+			<div class="viewNote">
+				<a href="#">View Class Notes</a>
+			</div>
+        </div>        
     </div>
 </body>
 </html>

@@ -153,7 +153,7 @@ namespace fileStorage
 
         [WebMethod]
         // [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public bool AddClass(string classID, string className, string professorName)
+        public bool AddClass(string classID, string className, string professorName, bool admin)
         {
 
             // grabbing connection string from config file
@@ -185,7 +185,7 @@ namespace fileStorage
                     insertClass.Parameters.AddWithValue("@classID", classID);
                     insertClass.Parameters.AddWithValue("@className", className);
                     insertClass.Parameters.AddWithValue("@professorName", professorName);
-                    insertClass.Parameters.AddWithValue("@approved", true);
+                    insertClass.Parameters.AddWithValue("@approved", admin);
 
                     // running command
                     insertClass.ExecuteNonQuery();

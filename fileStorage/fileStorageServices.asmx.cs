@@ -30,13 +30,13 @@ namespace fileStorage
         }
 
         [WebMethod]
-        public int NumberOfAccounts()
+        public int NumberOfClasses(string admin)
         {
             // grabbing connection string from config file
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
             // instantiating query
-            string sqlSelect = "SELECT * from users";
+            string sqlSelect = "SELECT * from Classes WHERE Approved = 0";
 
             // set up our connectino object to be ready to use our connection string
             MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);

@@ -28,7 +28,7 @@ function uploadFiles(formData) {
                 if (data[i].includes(".docx") || data[i].includes(".pdf") || data[i].includes(".txt")) {                   
                     str = "File(s) successfully uploaded!"
                 } else {
-                    str += "<img src='" + data[i] + "' height='100' width='100'>"
+                    str += "<img src='" + data[i] + "' height='200' width='200'>" 
                 }
             }                   
 

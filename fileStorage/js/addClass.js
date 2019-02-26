@@ -1,4 +1,4 @@
-﻿window.onload = function () {
+﻿ window.onload = function () {
     document.getElementById("addClassButton").addEventListener("click", addClass);
 }
 

@@ -99,6 +99,7 @@
     <Content Include="html\account.html" />
     <Content Include="html\addClass.html" />
     <Content Include="html\classRepo.html" />
+    <Content Include="html\searchClasses.html" />
     <Content Include="html\viewRequests.html" />
     <Content Include="html\createAccount.html" />
     <Content Include="html\viewClasses.html" />
